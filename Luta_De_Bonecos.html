@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arena de Palitos - 2 Jogadores</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background-color: #111;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-family: sans-serif;
+            overflow: hidden;
+        }
+        #canvasContainer {
+            position: relative;
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        canvas {
+            background: linear-gradient(to bottom, #1f1c2c, #928dab);
+            display: block;
+        }
+        .controles {
+            display: flex;
+            justify-content: space-around;
+            width: 800px;
+            color: #fff;
+            margin-top: 15px;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 10px;
+            border-radius: 8px;
+            font-size: 14px;
+        }
+        .player-info {
+            text-align: center;
+        }
+        .player-info strong {
+            display: block;
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+
+<div id="canvasContainer">
+    <canvas id="fightCanvas" width="800" height="400"></canvas>
+</div>
+
+<div class="controles">
+    <div class="player-info" style="color: #ff3366;">
+        <strong>JOGADOR 1 (Rosa)</strong>
+        Andar: A / D | Pular: W <br>
+        Soco: F | Chute: G
+    </div>
+    <div class="player-info" style="color: #00ccff;">
+        <strong>JOGADOR 2 (Azul)</strong>
+        Andar: Setas Esq / Dir | Pular: Seta Cima <br>
+        Soco: Num 1 | Chute: Num 2
+    </div>
+</div>
+
+<script>
+const canvas = document.getElementById('fightCanvas');
+const ctx = canvas.getContext('2d');
+
+// Teclas pressionadas
+const keys = {};
+window.addEventListener('keydown', e => keys[e.code] = true);
+window.addEventListener('keyup', e => keys[e.code] = false);
+
+// Classe do Lutador
+class Fighter {
+    constructor(x, side, color, controls) {
+        this.x = x;
+        this.baseY = 320;
+        this.y = this.baseY;
+        this.vy = 0;
+        this.side = side; // 1 = direita, -1 = esquerda
+        this.color = color;
+        this.controls = controls;
+        
+        this.hp = 100;
+        this.speed = 5;
+        this.gravity = 0.6;
+        this.isJumping = false;
+        
+        // Estados de ataque
+        this.isAttacking = false;
+        this.attackType = ''; // 'punch' ou 'kick'
+        this.attackTimer = 0;
+    }
+
+    update(opponent) {
+        // Atualizar direção (olhar sempre para o oponente)
+        this.side = this.x < opponent.x ? 1 : -1;
+
+        // Movimentação Esquerda/Direita
+        if (keys[this.controls.left] && this.x > 40) {
+            this.x -= this.speed;
+        }
+        if (keys[this.controls.right] && this.x < canvas.width - 40) {
+            this.x += this.speed;
+        }
+
+        // Pulo
+        if (keys[this.controls.jump] && !this.isJumping) {
+            this.vy = -12;
+            this.isJumping = true;
+        }
+
+        // Gravidade
+        this.y += this.vy;
+        if (this.y < this.baseY) {
+            this.vy += this.gravity;
+        } else {
+            this.y = this.baseY;
+            this.vy = 0;
+            this.isJumping = false;
+        }
+
+        // Lógica de Ataque (Soco)
+        if (keys[this.controls.punch] && !this.isAttacking) {
+            this.isAttacking = true;
+            this.attackType = 'punch';
+            this.attackTimer = 10; // Duração do golpe em frames
+            this.checkHit(opponent, 45, 15); // Alcance e Dano do soco
+        }
+
+        // Lógica de Ataque (Chute)
+        if (keys[this.controls.kick] && !this.isAttacking) {
+            this.isAttacking = true;
+            this.attackType = 'kick';
+            this.attackTimer = 15;
+            this.checkHit(opponent, 55, 20); // Alcance e Dano do chute
+        }
+
+        // Timer do ataque
+        if (this.isAttacking) {
+            this.attackTimer--;
+            if (this.attackTimer <= 0) {
+                this.isAttacking = false;
+                this.attackType = '';
+            }
+        }
+    }
+
+    checkHit(opponent, range, damage) {
+        // Verifica distância horizontal e vertical entre os bonecos
+        let distH = Math.abs(this.x - opponent.x);
+        let distV = Math.abs(this.y - opponent.y);
+
+        // Se estiver perto o suficiente e virado para o lado certo
+        if (distH < range && distV < 50) {
+            if ((this.side === 1 && this.x < opponent.x) || (this.side === -1 && this.x > opponent.x)) {
+                opponent.takeDamage(damage, this.side);
+            }
+        }
+    }
+
+    takeDamage(amount, direction) {
+        this.hp = Math.max(0, this.hp - amount);
+        this.x += direction * 20; // Empurrão do impacto
+    }
+
+    draw() {
+        ctx.strokeStyle = this.color;
+        ctx.lineWidth = 4;
+        ctx.lineCap = 'round';
+
+        let headY = this.y - 70;
+        let torsoY = this.y - 40;
+        
+        // Posições padrão dos membros
+        let leftHandX = this.x - 12, leftHandY = this.y - 45;
+        let rightHandX = this.x + 12, rightHandY = this.y - 45;
+        let leftFootX = this.x - 12, leftFootY = this.y;
+        let rightFootX = this.x + 12, rightFootY = this.y;
+
+        // Modificações visuais nos golpes
+        if (this.isAttacking && this.attackType === 'punch') {
+            if (this.side === 1) {
+                rightHandX = this.x + 35; rightHandY = this.y - 55;
+            } else {
+                leftHandX = this.x - 35; leftHandY = this.y - 55;
+            }
+        } else if (this.isAttacking && this.attackType === 'kick') {
+            if (this.side === 1) {
+                rightFootX = this.x + 40; rightFootY = this.y - 30;
+            } else {
+                leftFootX = this.x - 40; leftFootY = this.y - 30;
+            }
+        }
+
+        // Desenhar Cabeça
+        ctx.beginPath();
+        ctx.arc(this.x, headY, 12, 0, Math.PI * 2);
+        ctx.stroke();
+
+        // Desenhar Tronco
+        ctx.beginPath();
+        ctx.moveTo(this.x, headY + 12);
+        ctx.lineTo(this.x, torsoY);
+        ctx.stroke();
+
+        // Desenhar Braços
+        ctx.beginPath();
+        ctx.moveTo(this.x, headY + 20);
+        ctx.lineTo(leftHandX, leftHandY);
+        ctx.moveTo(this.x, headY + 20);
+        ctx.lineTo(rightHandX, rightHandY);
+        ctx.stroke();
+
+        // Desenhar Pernas
+        ctx.beginPath();
+        ctx.moveTo(this.x, torsoY);
+        ctx.lineTo(leftFootX, leftFootY);
+        ctx.moveTo(this.x, torsoY);
+        ctx.lineTo(rightFootX, rightFootY);
+        ctx.stroke();
+
+        // Desenhar Barras de Vida (Fixas no topo da tela para facilitar a visão)
+        ctx.fillStyle = 'rgba(255,255,255,0.2)';
+        if (this.color === '#ff3366') { // Player 1 (Esquerda)
+            ctx.fillRect(30, 20, 300, 20);
+            ctx.fillStyle = '#ff3366';
+            ctx.fillRect(30, 20, (this.hp / 100) * 300, 20);
+        } else { // Player 2 (Direita)
+            ctx.fillRect(470, 20, 300, 20);
+            ctx.fillStyle = '#00ccff';
+            ctx.fillRect(470 + (300 - (this.hp / 100) * 300), 20, (this.hp / 100) * 300, 20);
+        }
+    }
+}
+
+// Configuração de controles de cada jogador
+const p1Controls = { left: 'KeyA', right: 'KeyD', jump: 'KeyW', punch: 'KeyF', kick: 'KeyG' };
+const p2Controls = { left: 'ArrowLeft', right: 'ArrowRight', jump: 'ArrowUp', punch: 'Numpad1', kick: 'Numpad2' };
+
+// Instanciando os jogadores
+const player1 = new Fighter(200, 1, '#ff3366', p1Controls);
+const player2 = new Fighter(600, -1, '#00ccff', p2Controls);
+
+function loop() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    // Desenhar o Chão
+    ctx.strokeStyle = '#444';
+    ctx.lineWidth = 6;
+    ctx.beginPath();
+    ctx.moveTo(0, 322);
+    ctx.lineTo(canvas.width, 322);
+    ctx.stroke();
+
+    // Atualizar e desenhar personagens
+    player1.update(player2);
+    player2.update(player1);
+
+    player1.draw();
+    player2.draw();
+
+    // Mensagem de Fim de Jogo
+    if (player1.hp <= 0 || player2.hp <= 0) {
+        ctx.fillStyle = 'rgba(0, 0, 0, 0.7)';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        
+        ctx.fillStyle = '#fff';
+        ctx.font = 'bold 40px sans-serif';
+        ctx.textAlign = 'center';
+        
+        let winner = player1.hp > 0 ? 'JOGADOR 1 VENCEU!' : 'JOGADOR 2 VENCEU!';
+        ctx.fillText(winner, canvas.width / 2, canvas.height / 2);
+        
+        ctx.font = '20px sans-serif';
+        ctx.fillText('Pressione F5 para reiniciar', canvas.width / 2, canvas.height / 2 + 50);
+        return; // Para o loop
+    }
+
+    requestAnimationFrame(loop);
+}
+
+// Inicia o jogo
+loop();
+</script>
+
+</body>
+</html>
