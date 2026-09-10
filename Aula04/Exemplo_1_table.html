@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+	<head>
+		<meta charset="UTF-8">
+		<title>Exemplo 1</title>
+	</head>
+	<body>
+		<!--table -> tabela -->
+		<!--Iniciando a tabela -->
+		<table border="1" width="100%">
+			<!--thead cabeçalho da tabela -->
+			<thead style="background-color: blue; color: #FFF;">
+				<!--Primeira linha -->
+				<!--Linha da tabela -> tr -->
+				<tr>
+				<!--th cabeçalho -->
+					<th>diciplina</th>
+					<th>Nota 1</th>
+					<th>Nota 2</th>
+					<th>Nota 3</th>
+					<th>Nota 4</th>
+					<th>Média</th>
+				</tr>
+			</thead>
+			<!--tbody corpo da tabela -->
+			<tbody>
+				<!--Segunda linha -->
+				<!--Linha da tabela -> tr -->
+				<tr style="background-image: url('https://static.vecteezy.com/ti/vetor-gratis/p1/2173503-abstrato-azul-listrado-linha-serrilhada-padrao-sobre-fundo-branco-e-textura-vetor.jpg');">
+					<!--td dados da tabela -->
+					<td>Matematica</td>
+					<td>10,0</td>
+					<td>9,0</td>
+					<td>8,0</td>
+					<td>7,0</td>
+					<td>8,5</td>
+				</tr>
+				<!--Terceira linha -->
+				<!--Linha da tabela -> tr -->
+				<tr style="background-image: url('https://static.vecteezy.com/ti/vetor-gratis/p1/2173503-abstrato-azul-listrado-linha-serrilhada-padrao-sobre-fundo-branco-e-textura-vetor.jpg');">
+					<td>Portugues</td>
+					<td>9,5</td>
+					<td>10,0</td>
+					<td>8,0</td>
+					<td>8,5</td>
+					<td>9,0</td>
+				</tr>
+				
+				<!--Quarta linha -> tr -->
+				<tr style="background-image: url('https://static.vecteezy.com/ti/vetor-gratis/p1/2173503-abstrato-azul-listrado-linha-serrilhada-padrao-sobre-fundo-branco-e-textura-vetor.jpg');">
+					<!--Colspan mesclar colunas -->
+					<th colspan="6" style="background-color: red; color: #FFF;">SENAI</th>
+				</tr>
+				
+				<!--Quinta linha -->
+				<tr style="background-image: url('https://static.vecteezy.com/ti/vetor-gratis/p1/2173503-abstrato-azul-listrado-linha-serrilhada-padrao-sobre-fundo-branco-e-textura-vetor.jpg');">
+					<th>Disciplina</th>
+					<th colspan="2">1° Semestre</th>
+					<th colspan="2">2° Semestre</th>
+					<th>Média</th>
+				</tr>
+				
+				<!--Sexta linha -> tr -->
+				<tr style="background-image: url('https://static.vecteezy.com/ti/vetor-gratis/p1/2173503-abstrato-azul-listrado-linha-serrilhada-padrao-sobre-fundo-branco-e-textura-vetor.jpg');">
+					<td>Logica de programação</td>
+					<td>9,0</td>
+					<td>9,0</td>
+					<!-- rowspan mesclar linhas -->
+					<td rowspan="2">-</td>
+					<td rowspan="2">-</td>
+					<td>9,0</td>
+				</tr>
+				
+				<!--Setima linha -> tr -->
+				<tr style="background-image: url('https://static.vecteezy.com/ti/vetor-gratis/p1/2173503-abstrato-azul-listrado-linha-serrilhada-padrao-sobre-fundo-branco-e-textura-vetor.jpg');">
+					<td>Levantamento de requisitos</td>
+					<td>9,0</td>
+					<td>8,0</td>
+					<!-- Apagar as linhas mescladas -->
+					<!-- <td>-</td> -->
+					<!-- <td>-</td> -->
+					<td>8,5</td>
+				</tr>
+				
+				<!--oitava linha -> tr -->
+				<tr style="background-image: url('https://static.vecteezy.com/ti/vetor-gratis/p1/2173503-abstrato-azul-listrado-linha-serrilhada-padrao-sobre-fundo-branco-e-textura-vetor.jpg');">
+					<td>Bamco de dados</td>
+					<td rowspan="2">-</td>
+					<td rowspan="2">-</td>
+					<td>8,0</td>
+					<td>10,0</td>
+					<td>9,0</td>
+				</tr>
+				
+				<!--nona linha -> tr -->
+				<tr style="background-image: url('https://static.vecteezy.com/ti/vetor-gratis/p1/2173503-abstrato-azul-listrado-linha-serrilhada-padrao-sobre-fundo-branco-e-textura-vetor.jpg');">
+					<td>Linguagem de marcação</td>
+					<!-- <td rowspan="2">-</td> -->
+					<!-- <td rowspan="2">-</td> -->
+					<td>10,0</td>
+					<td>10,0</td>
+					<td>10,0</td>
+				</tr>
+				
+				<tr style="background-image: url('https://static.vecteezy.com/ti/vetor-gratis/p1/2173503-abstrato-azul-listrado-linha-serrilhada-padrao-sobre-fundo-branco-e-textura-vetor.jpg');">
+					<th colspan="5">Media Total</th>
+					<th>9,0</th>
+				</tr>
+		</table>
+		</body>
+</html>
