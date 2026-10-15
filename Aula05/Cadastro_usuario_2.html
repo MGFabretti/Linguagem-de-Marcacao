@@ -1,0 +1,553 @@
+<!DOCTYLE html>
+<html lang="pr-br">
+	<head>
+		<meta charset="UTF-8">
+		<title>Cadastro do Usuario</title>
+	</head>
+	<body>
+		<form action="#" method="POST">
+			<label for="nome">Codigo:</label>
+			<input type="text" id="codigo" name="codigo" value="0" style="text-align: right;" disabled>
+			<br>
+			
+			<label for="nome">N° do contrato:</label>
+			<input type="number" id="contrato" name="contrato" placeholder="N° Contrato..." minlength="3" maxlength="255" required>
+			<label for="nome">N° da loja:</label>
+			<input type="number" id="loja" name="loja" placeholder="N° Loja..." minlength="3" maxlength="255" required>
+			<br>
+			<label for="nome">Descrição:</label>
+			<input type=""text" id="descricao" name="descricao" placeholder="Digite..." minlength="3" maxlength="255" required>
+			
+			<br>
+			<label for="nome">Data:</label>
+			<input type="date" id="data" name="data" required>
+			<br>
+			<label for="turma">Operadora:</label>
+			<select name="turma" id="turma" required>
+				<option value="">Selecione...</option>
+				<option value="1EMA">Claro</option>
+				<option value="1EMB">Vivo</option>
+				<option value="2EMA">BS</option>
+			</select>
+			<br>
+			<label for="turma">Filial:</label>
+			<select name="filial" id="filial" required>
+				<option value="">Selecione...</option>
+				<option value="1EMA">Claro</option>
+				<option value="1EMB">Vivo</option>
+				<option value="2EMA">BS</option>
+			</select>
+			<br>
+			<label for="turma">Empresa Matriz:</label>
+			<select name="matriz" id="matriz" required>
+				<option value="">Selecione...</option>
+				<option value="1EMA">Claro</option>
+				<option value="1EMB">Vivo</option>
+				<option value="2EMA">BS</option>
+			</select>
+			<br>
+			<label for="turma">Origem das contas contabeis:</label>
+			<select name="contabeis" id="contabeis" required>
+				<option value="">Contrato...</option>
+				<option value="1EMA">Claro</option>
+				<option value="1EMB">Vivo</option>
+				<option value="2EMA">BS</option>
+			</select>
+			<input type="checkbox" id="termos" name="termos" required>Deposito da conta informada
+			<br>
+			<label for="turma">Status do contrato:</label>
+			<select name="status" id="status" required>
+				<option value="">Ative...</option>
+				<option value="1EMA">Claro</option>
+				<option value="1EMB">Vivo</option>
+				<option value="2EMA">BS</option>
+			</select>
+			<input type="checkbox" id="termos" name="termos" required>condições consolidadas
+			<label for="nome">Permitir conciliar manualmente quando há variação de até</label>
+			<input type="number" step="0.01" id="per" name="per" style="text-align: right;" required>
+			<br>
+			<label for="turma">Indentificar comprovante por::</label>
+			<select name="ind" id="ind" required>
+				<option value="">Numero de autorização...</option>
+				<option value="1EMA">Claro</option>
+				<option value="1EMB">Vivo</option>
+				<option value="2EMA">BS</option>
+			</select>
+			
+			<input type="checkbox" id="termos" name="termos" required>Remover zeros esquerda do N° comprovante
+			<input type="checkbox" id="termos" name="termos" required>Validar valores na conciliação automatica
+			<br>
+			<input type="checkbox" id="termos" name="termos" required>Usar campo de usuario[Data de tranzação do cartão] do contas a receber para indetificar o comprovante na conciliação
+			<br>
+			<input type="checkbox" id="termos" name="termos" required>Gerar cotas a receber por conta para comprovantes não indetificados
+			<input type="checkbox" id="termos" name="termos" required>Contas a receber agrupado
+			<br>
+			<input type="checkbox" id="termos" name="termos" required>Usar projeto do cadastro de equipamento
+			<input type="checkbox" id="termos" name="termos" required>LCM agrupado de comprovante do cartão
+			<br>
+			<label for="nome">Cartão:</label>
+			<input type="text" id="cartao" name="cartao" value="Não informado" disabled>
+			<br>
+			<label for="nome">Forma de pagamento:</label>
+			<input type="text" id="cartao" name="cartao" value="Não informado" disabled>
+			<br>
+			<hr>
+			<p><b>Contabilização</b></p>
+			<label for="cod">Conta de provisão   ➡️</label>
+			<input type="number" id="cod" name="cod">
+			<input type="number" id="cod1" name="cod1">
+			<br>
+			<label for="cod">Conta de banco    ➡️</label>
+			<input type="number" id="cod2" name="cod2">
+			<input type="number" id="cod3" name="cod3">
+			<br>
+			<label for="cod">Conta para comissão    ➡️</label>
+			<input type="number" id="cod4" name="cod4">
+			<input type="number" id="cod5" name="cod5">
+			<br>
+			<label for="cod">Conta para cancelamento    ➡️</label>
+			<input type="number" id="cod6" name="cod6">
+			<input type="number" id="cod7" name="cod7">
+			<br>
+			<label for="cod">Conta de antecipação    ➡️</label>
+			<input type="number" id="cod8" name="cod8">
+			<input type="number" id="cod9" name="cod9">
+			<br>
+			<label for="cod">Conta de debito➡️</label>
+			<input type="number" id="cod10" name="cod10">
+			<input type="number" id="cod11" name="cod11">
+			<br>
+			<label for="cod">Conta de crédito➡️</label>
+			<input type="number" id="cod12" name="cod12">
+			<input type="number" id="cod13" name="cod13">
+			<br>
+			<label for="cod">Conta de despesas de aluguel ➡️</label>
+			<input type="number" id="cod14" name="cod14">
+			<input type="number" id="cod15" name="cod15">
+			<br>
+			<label for="cod">Conta de compensação ➡️</label>
+			<input type="number" id="cod16" name="cod16">
+			<input type="number" id="cod17" name="cod17">
+			<hr>
+			<br>
+			<button style="background:yellow">Inserir</button>
+			<button style="background:yellow">Cancelar</button>
+			<button style="background:yellow">Log</button>
+			<hr>
+			<h1></h1>
+		</form>
+	</body>
+</html>
+
+<!-- Segunda forma feita pelo chatgpt -->
+
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Cadastro do Usuário</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 30px;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1000px;
+            margin: auto;
+            background-color: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px #ccc;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        h2 {
+            color: #444;
+            border-bottom: 2px solid #ddd;
+            padding-bottom: 8px;
+        }
+
+        .campo {
+            margin-bottom: 15px;
+        }
+
+        label {
+            font-weight: bold;
+            display: inline-block;
+            margin-bottom: 5px;
+        }
+
+        input,
+        select {
+            padding: 8px;
+            border: 1px solid #aaa;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+
+        input[type="text"],
+        input[type="number"],
+        input[type="date"],
+        select {
+            width: 250px;
+        }
+
+        input:disabled {
+            background-color: #e9e9e9;
+        }
+
+        .linha {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .checkbox {
+            margin: 12px 0;
+        }
+
+        .checkbox label {
+            font-weight: normal;
+        }
+
+        .conta {
+            display: flex;
+            align-items: center;
+            margin-bottom: 12px;
+            gap: 10px;
+        }
+
+        .conta label {
+            width: 280px;
+        }
+
+        .conta input {
+            width: 150px;
+        }
+
+        .botoes {
+            text-align: center;
+            margin-top: 25px;
+        }
+
+        button {
+            padding: 10px 25px;
+            margin: 5px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .inserir {
+            background-color: #ffd900;
+        }
+
+        .cancelar {
+            background-color: #ddd;
+        }
+
+        .log {
+            background-color: #bdbdbd;
+        }
+
+        button:hover {
+            opacity: 0.8;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>Cadastro do Usuário</h1>
+
+        <form action="#" method="POST">
+
+            <h2>Informações do Contrato</h2>
+
+            <div class="linha">
+
+                <div class="campo">
+                    <label for="codigo">Código:</label><br>
+                    <input type="text" id="codigo" name="codigo"
+                           value="0" style="text-align: right;" disabled>
+                </div>
+
+                <div class="campo">
+                    <label for="contrato">N° do contrato:</label><br>
+                    <input type="number" id="contrato" name="contrato"
+                           placeholder="N° Contrato..." required>
+                </div>
+
+                <div class="campo">
+                    <label for="loja">N° da loja:</label><br>
+                    <input type="number" id="loja" name="loja"
+                           placeholder="N° Loja..." required>
+                </div>
+
+            </div>
+
+            <div class="campo">
+                <label for="descricao">Descrição:</label><br>
+                <input type="text" id="descricao" name="descricao"
+                       placeholder="Digite..." minlength="3"
+                       maxlength="255" required>
+            </div>
+
+            <div class="linha">
+
+                <div class="campo">
+                    <label for="data">Data:</label><br>
+                    <input type="date" id="data" name="data" required>
+                </div>
+
+                <div class="campo">
+                    <label for="operadora">Operadora:</label><br>
+                    <select name="operadora" id="operadora" required>
+                        <option value="">Selecione...</option>
+                        <option value="claro">Claro</option>
+                        <option value="vivo">Vivo</option>
+                        <option value="bs">BS</option>
+                    </select>
+                </div>
+
+                <div class="campo">
+                    <label for="filial">Filial:</label><br>
+                    <select name="filial" id="filial" required>
+                        <option value="">Selecione...</option>
+                        <option value="claro">Claro</option>
+                        <option value="vivo">Vivo</option>
+                        <option value="bs">BS</option>
+                    </select>
+                </div>
+
+            </div>
+
+            <div class="linha">
+
+                <div class="campo">
+                    <label for="matriz">Empresa Matriz:</label><br>
+                    <select name="matriz" id="matriz" required>
+                        <option value="">Selecione...</option>
+                        <option value="claro">Claro</option>
+                        <option value="vivo">Vivo</option>
+                        <option value="bs">BS</option>
+                    </select>
+                </div>
+
+                <div class="campo">
+                    <label for="contabeis">Origem das contas contábeis:</label><br>
+                    <select name="contabeis" id="contabeis" required>
+                        <option value="">Contrato...</option>
+                        <option value="claro">Claro</option>
+                        <option value="vivo">Vivo</option>
+                        <option value="bs">BS</option>
+                    </select>
+                </div>
+
+                <div class="campo">
+                    <label for="status">Status do contrato:</label><br>
+                    <select name="status" id="status" required>
+                        <option value="">Ativo...</option>
+                        <option value="claro">Claro</option>
+                        <option value="vivo">Vivo</option>
+                        <option value="bs">BS</option>
+                    </select>
+                </div>
+
+            </div>
+
+            <div class="checkbox">
+                <input type="checkbox" id="deposito" name="deposito">
+                <label for="deposito">Depósito da conta informada</label>
+            </div>
+
+            <div class="checkbox">
+                <input type="checkbox" id="condicoes" name="condicoes">
+                <label for="condicoes">Condições consolidadas</label>
+            </div>
+
+
+            <h2>Configurações da Conciliação</h2>
+
+            <div class="campo">
+                <label for="per">
+                    Permitir conciliar manualmente quando há variação de até:
+                </label><br>
+
+                <input type="number" step="0.01" id="per"
+                       name="per" style="text-align: right;" required>
+            </div>
+
+            <div class="campo">
+                <label for="ind">
+                    Identificar comprovante por:
+                </label><br>
+
+                <select name="ind" id="ind" required>
+                    <option value="">Número de autorização...</option>
+                    <option value="claro">Claro</option>
+                    <option value="vivo">Vivo</option>
+                    <option value="bs">BS</option>
+                </select>
+            </div>
+
+            <div class="checkbox">
+                <input type="checkbox" id="zeros" name="zeros">
+                <label for="zeros">
+                    Remover zeros à esquerda do N° comprovante
+                </label>
+            </div>
+
+            <div class="checkbox">
+                <input type="checkbox" id="valores" name="valores">
+                <label for="valores">
+                    Validar valores na conciliação automática
+                </label>
+            </div>
+
+            <div class="checkbox">
+                <input type="checkbox" id="usuario_data" name="usuario_data">
+                <label for="usuario_data">
+                    Usar campo de usuário (Data de transação do cartão)
+                    do contas a receber para identificar o comprovante
+                    na conciliação
+                </label>
+            </div>
+
+            <div class="checkbox">
+                <input type="checkbox" id="gerar_contas" name="gerar_contas">
+                <label for="gerar_contas">
+                    Gerar contas a receber por conta para comprovantes
+                    não identificados
+                </label>
+            </div>
+
+            <div class="checkbox">
+                <input type="checkbox" id="agrupado" name="agrupado">
+                <label for="agrupado">
+                    Contas a receber agrupado
+                </label>
+            </div>
+
+            <div class="checkbox">
+                <input type="checkbox" id="projeto" name="projeto">
+                <label for="projeto">
+                    Usar projeto do cadastro de equipamento
+                </label>
+            </div>
+
+            <div class="checkbox">
+                <input type="checkbox" id="lcm" name="lcm">
+                <label for="lcm">
+                    LCM agrupado de comprovante do cartão
+                </label>
+            </div>
+
+            <div class="campo">
+                <label for="cartao">Cartão:</label><br>
+                <input type="text" id="cartao" name="cartao"
+                       value="Não informado" disabled>
+            </div>
+
+            <div class="campo">
+                <label for="pagamento">Forma de pagamento:</label><br>
+                <input type="text" id="pagamento" name="pagamento"
+                       value="Não informado" disabled>
+            </div>
+
+
+            <h2>Contabilização</h2>
+
+            <div class="conta">
+                <label for="cod">Conta de provisão ➡️</label>
+                <input type="number" id="cod" name="cod">
+                <input type="number" id="cod1" name="cod1">
+            </div>
+
+            <div class="conta">
+                <label for="cod2">Conta de banco ➡️</label>
+                <input type="number" id="cod2" name="cod2">
+                <input type="number" id="cod3" name="cod3">
+            </div>
+
+            <div class="conta">
+                <label for="cod4">Conta para comissão ➡️</label>
+                <input type="number" id="cod4" name="cod4">
+                <input type="number" id="cod5" name="cod5">
+            </div>
+
+            <div class="conta">
+                <label for="cod6">Conta para cancelamento ➡️</label>
+                <input type="number" id="cod6" name="cod6">
+                <input type="number" id="cod7" name="cod7">
+            </div>
+
+            <div class="conta">
+                <label for="cod8">Conta de antecipação ➡️</label>
+                <input type="number" id="cod8" name="cod8">
+                <input type="number" id="cod9" name="cod9">
+            </div>
+
+            <div class="conta">
+                <label for="cod10">Conta de débito ➡️</label>
+                <input type="number" id="cod10" name="cod10">
+                <input type="number" id="cod11" name="cod11">
+            </div>
+
+            <div class="conta">
+                <label for="cod12">Conta de crédito ➡️</label>
+                <input type="number" id="cod12" name="cod12">
+                <input type="number" id="cod13" name="cod13">
+            </div>
+
+            <div class="conta">
+                <label for="cod14">
+                    Conta de despesas de aluguel ➡️
+                </label>
+                <input type="number" id="cod14" name="cod14">
+                <input type="number" id="cod15" name="cod15">
+            </div>
+
+            <div class="conta">
+                <label for="cod16">
+                    Conta de compensação ➡️
+                </label>
+                <input type="number" id="cod16" name="cod16">
+                <input type="number" id="cod17" name="cod17">
+            </div>
+
+
+            <div class="botoes">
+                <button type="submit" class="inserir">
+                    Inserir
+                </button>
+
+                <button type="reset" class="cancelar">
+                    Cancelar
+                </button>
+
+                <button type="button" class="log">
+                    Log
+                </button>
+            </div>
+
+        </form>
+
+    </div>
+
+</body>
+</html>
+```
